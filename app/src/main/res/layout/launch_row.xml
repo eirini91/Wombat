@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <import
+            alias="ExtensionFunctions"
+            type="com.televantou.wombat.utils.ExtensionsKt" />
+
+        <variable
+            name="item"
+            type="com.televantou.wombat.data.Submission" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/layoutVotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img">
+
+            <ImageView
+                android:id="@+id/imgUpvote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_up" />
+
+            <TextView
+                android:id="@+id/txtUpvotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down" />
+
+            <ImageView
+                android:id="@+id/imgDownvote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setImageUrl="@{item.data.thumbnail}"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Posted by u/"
+            app:layout_constraintStart_toEndOf="@+id/layoutVotes"
+            app:layout_constraintTop_toTopOf="@+id/img" />
+
+        <TextView
+            android:id="@+id/txtNameValue"
+            style="@style/Text.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@{item.data.author}"
+            app:layout_constraintStart_toEndOf="@+id/txtName"
+            app:layout_constraintTop_toTopOf="@+id/img" />
+
+        <TextView
+            android:id="@+id/txtDateTime"
+            style="@style/Text.SmallThin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="3"
+            android:text="@{item.data.title}"
+            app:layout_constraintBottom_toTopOf="@+id/imgComments"
+            app:layout_constraintEnd_toStartOf="@+id/img"
+            app:layout_constraintStart_toEndOf="@+id/layoutVotes"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+
+        <ImageView
+            android:id="@+id/imgComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_comments"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_constraintStart_toEndOf="@+id/layoutVotes" />
+
+        <TextView
+            android:id="@+id/txtComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@{String.format(@string/comments, item.data.num_comments)}"
+            app:layout_constraintBottom_toBottomOf="@+id/imgComments"
+            app:layout_constraintStart_toEndOf="@+id/imgComments"
+            app:layout_constraintTop_toTopOf="@+id/imgComments" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

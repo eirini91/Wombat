@@ -7,15 +7,18 @@ buildscript {
         targetSdkVersion = 30
 
         // App dependencies
-        kotlin_version = "1.5.20"
+        kotlin_version = "1.4.30"
         appCompatVersion = '1.1.0'
         gradleVersion = '4.1.1'
         okhttpLoggingVersion = '4.7.2'
         gsonVersion = '2.8.2'
         retrofitVersion = '2.9.0'
-        hiltVersion = '2.28.3-alpha'
-        hiltViewModelVersion = '1.0.0-alpha02'
+        hiltVersion = '2.35'
+        hiltViewModelVersion = '1.0.0-alpha03'
         assistedInjectVersion = '0.5.2'
+        pagingVersion = '3.0.0-beta01'
+        fragmentVersion = '1.2.5'
+        glideVersion = '4.10.0'
 
     }
     repositories {
@@ -25,8 +28,9 @@ buildscript {
 
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.2.1"
+        classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -36,7 +40,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter() // Warning: this repository is going to shut down soon
+        jcenter()
         mavenCentral()
         maven {
             url 'http://oss.sonatype.org/content/repositories/snapshots'
