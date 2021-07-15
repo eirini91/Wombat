@@ -1,6 +1,6 @@
 package com.televantou.wombat.data
 
-data class Children(
+data class Submission(
     val data: DataX,
     val kind: String
 )
