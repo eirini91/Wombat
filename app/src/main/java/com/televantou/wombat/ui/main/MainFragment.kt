@@ -1,26 +1,29 @@
 package com.televantou.wombat.ui.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.televantou.asosspacex.ui.main.LaunchAdapter
-import com.televantou.asosspacex.ui.main.MainViewModel
 import com.televantou.wombat.data.Submission
 import com.televantou.wombat.databinding.MainFragmentBinding
+import com.televantou.wombat.utils.getRedditUrl
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.Job
 
 
 /**
- * Created by Eirini Televantou on 15/02/2021 for ASOS.
+ * Created by Eirini Televantou on 15/07/2021 for Wombat.
  */
 
 @AndroidEntryPoint
 class MainFragment : Fragment(),
-    LaunchAdapter.OnItemClickListener {
+        LaunchAdapter.OnItemClickListener {
 
+    private val viewModel: MainViewModel by viewModels()
 
     companion object {
         fun newInstance() = MainFragment()
@@ -28,13 +31,12 @@ class MainFragment : Fragment(),
 
     private val mDisposable = CompositeDisposable()
 
-    var launchAdapter: LaunchAdapter = LaunchAdapter(context, this)
-    private val viewModel: MainViewModel by viewModels()
+    var launchAdapter: LaunchAdapter = LaunchAdapter(this)
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
 
@@ -50,15 +52,16 @@ class MainFragment : Fragment(),
 
 
     private fun getData() {
-        // Make sure we cancel the previous job before creating a new one
         mDisposable.add(viewModel.getFavoriteMovies().subscribe {
             launchAdapter.submitData(lifecycle, it)
         })
     }
 
 
-    override fun onItemClicked(launchItem: Submission) {
-        //launch reddit
+    override fun onItemClicked(submission: Submission) {
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(submission.getRedditUrl())
+        startActivity(i)
     }
 
 

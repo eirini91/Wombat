@@ -12,7 +12,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 /**
- * Created by Eirini Televantou on 15/07/2021 for iPlato.
+ * Created by Eirini Televantou on 15/07/2021 for Wombat.
  */
 class SubmissionRepository @Inject constructor(private val service: RedditApi) {
 

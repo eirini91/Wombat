@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 /**
- * Created by Eirini Televantou on 03/02/21 for Retail inMotion.
+ * Created by Eirini Televantou on 15/07/21 for Wombat.
  */
 //Binding Adapter to set recycler view adapter from XML
 @BindingAdapter(value = ["setAdapter"])

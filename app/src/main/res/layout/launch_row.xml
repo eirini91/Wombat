@@ -7,11 +7,6 @@
 
         <import type="android.view.View" />
 
-
-        <import
-            alias="ExtensionFunctions"
-            type="com.televantou.wombat.utils.ExtensionsKt" />
-
         <variable
             name="item"
             type="com.televantou.wombat.data.Submission" />
@@ -63,7 +58,6 @@
             app:setImageUrl="@{item.data.thumbnail}"
             tools:ignore="ContentDescription" />
 
-
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
@@ -84,7 +78,7 @@
             app:layout_constraintTop_toTopOf="@+id/img" />
 
         <TextView
-            android:id="@+id/txtDateTime"
+            android:id="@+id/txtTitle"
             style="@style/Text.SmallThin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -8,5 +8,7 @@ data class DataX(
     val num_comments: Int,
     val thumbnail: String,
     val title: String,
-    val ups: Int
-)
+    val ups: Int,
+    val permalink: String
+    )
+

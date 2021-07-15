@@ -3,17 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
             name="launchAdapter"
-            type="com.televantou.asosspacex.ui.main.LaunchAdapter" />
+            type="com.televantou.wombat.ui.main.LaunchAdapter" />
 
         <variable
             name="viewModel"
-            type="com.televantou.asosspacex.ui.main.MainViewModel" />
-
+            type="com.televantou.wombat.ui.main.MainViewModel" />
     </data>
 
     <RelativeLayout
@@ -30,7 +28,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="@{(!viewModel.loadingCompanyInfo &amp;&amp; viewModel.errorCompanyInfo.length()>0) ? View.VISIBLE : View.GONE}">
+            android:visibility="@{(!viewModel.loading &amp;&amp; viewModel.error.length()>0) ? View.VISIBLE : View.GONE}">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -42,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@{viewModel.errorCompanyInfo}" />
+                android:text="@{viewModel.error}" />
 
             <TextView
                 style="@style/Text.Large"
@@ -57,7 +55,7 @@
             android:id="@+id/rclLaunches"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{viewModel.errorCompanyInfo.length()>0 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.error.length()>0 ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:setAdapter="@{launchAdapter}" />
 
@@ -69,7 +67,7 @@
             android:layout_height="50dp"
             android:layout_centerInParent="true"
             android:theme="@style/progressBar"
-            android:visibility="@{viewModel.loadingCompanyInfo  ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{viewModel.loading  ? View.VISIBLE : View.GONE}" />
 
         <!-- END LOADING SCREEN -->
     </RelativeLayout>

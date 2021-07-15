@@ -1,4 +1,4 @@
-package com.televantou.asosspacex.ui.main
+package com.televantou.wombat.ui.main
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,11 +11,10 @@ import com.televantou.wombat.databinding.LaunchRowBinding
 import com.televantou.wombat.utils.getCount
 
 /**
- * Created by Eirini Televantou on 15/02/2021 for ASOS.
+ * Created by Eirini Televantou on 15/07/2021 for Wombat.
  */
 
 class LaunchAdapter(
-        var context: Context?,
         private var onItemClickListener: OnItemClickListener
 ) : PagingDataAdapter<Submission, LaunchAdapter.ViewHolder>(UserComparator) {
 
@@ -36,9 +35,8 @@ class LaunchAdapter(
     inner class ViewHolder(val binding: LaunchRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Submission) {
-            with(binding) {
-                binding.txtUpvotes.setText(item.getCount())
-            }
+            binding.txtUpvotes.text = item.getCount()
+            binding.parent.setOnClickListener { onItemClickListener.onItemClicked(item) }
         }
     }
 
@@ -46,7 +44,6 @@ class LaunchAdapter(
         fun onItemClicked(launchItem: Submission)
     }
 
-    //Required for PagingAdapters
     object UserComparator : DiffUtil.ItemCallback<Submission>() {
         override fun areItemsTheSame(oldItem: Submission, newItem: Submission): Boolean {
             return oldItem.data.id == newItem.data.id

@@ -11,22 +11,21 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
- * Created by Eirini Televantou on 15/07/2021 for iPlato.
+ * Created by Eirini Televantou on 15/07/2021 for Wombat.
  */
 private const val UNSPLASH_STARTING_PAGE_INDEX = 15
 
-//Paging source class for paging functionality when loading Launches
+//Paging source class for paging functionality when loading Submissions
 class SubmissionPagingSource(val service: RedditApi) :
     RxPagingSource<Int, Submission>() {
 
 
     override fun getRefreshKey(state: PagingState<Int, Submission>): Int? {
-        return 7
+        return 20
     }
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Submission>> {
         val page = params.key ?: 1
-
 
         return service.getSubmissions(
             20,
