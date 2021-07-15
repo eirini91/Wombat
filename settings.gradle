@@ -1,0 +1,2 @@
+rootProject.name = "Wombat"
+include ':app'
