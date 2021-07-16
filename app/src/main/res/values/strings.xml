@@ -2,5 +2,6 @@
     <string name="app_name">Wombat</string>
     <string name="please_try_again_later">Please Try Again Later</string>
     <string name="comments">%1$s Comments</string>
+    <string name="no_internet_toast">No internet connection, Loading data from Local Storage</string>
 
 </resources>

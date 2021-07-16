@@ -1,7 +1,7 @@
 package com.televantou.wombat.api
 
 import com.televantou.wombat.BuildConfig
-import com.televantou.wombat.data.SubmissionsResponse
+import com.televantou.wombat.data.net.SubmissionsResponse
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,7 +19,8 @@ interface RedditApi {
     @GET("hot/.json")
     fun getSubmissions(
             @Query("limit") limit: Int,
-            @Query("count") page: Int
+            @Query("count") page: Int,
+            @Query("after") after: String?
     ): Single<SubmissionsResponse>
 
     companion object {
@@ -41,7 +42,6 @@ interface RedditApi {
                     .baseUrl(BASE_URL)
                     .client(client)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(RedditApi::class.java)

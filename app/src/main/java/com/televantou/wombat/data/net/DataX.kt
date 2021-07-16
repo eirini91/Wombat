@@ -1,4 +1,4 @@
-package com.televantou.wombat.data
+package com.televantou.wombat.data.net
 
 data class DataX(
     val author: String,
@@ -9,6 +9,8 @@ data class DataX(
     val thumbnail: String,
     val title: String,
     val ups: Int,
-    val permalink: String
+    val permalink: String,
+    val before: String,
+    val after: String
     )
 

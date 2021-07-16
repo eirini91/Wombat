@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.televantou.wombat.data.Submission" />
+            type="com.televantou.wombat.data.local.SubmissionLocal" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,7 +55,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setImageUrl="@{item.data.thumbnail}"
+            app:setImageUrl="@{item.thumbnail}"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="@{item.data.author}"
+            android:text="@{item.author}"
             app:layout_constraintStart_toEndOf="@+id/txtName"
             app:layout_constraintTop_toTopOf="@+id/img" />
 
@@ -86,7 +86,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:lines="3"
-            android:text="@{item.data.title}"
+            android:text="@{item.title}"
             app:layout_constraintBottom_toTopOf="@+id/imgComments"
             app:layout_constraintEnd_toStartOf="@+id/img"
             app:layout_constraintStart_toEndOf="@+id/layoutVotes"
@@ -107,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="@{String.format(@string/comments, item.data.num_comments)}"
+            android:text="@{String.format(@string/comments, item.num_comments)}"
             app:layout_constraintBottom_toBottomOf="@+id/imgComments"
             app:layout_constraintStart_toEndOf="@+id/imgComments"
             app:layout_constraintTop_toTopOf="@+id/imgComments" />

@@ -1,10 +1,14 @@
 package com.televantou.wombat.ui.main
 
-import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.DataSource
+import androidx.paging.PagedList
 import androidx.paging.PagingData
-import com.televantou.wombat.data.Submission
+import androidx.paging.PagingSource
+import com.televantou.wombat.data.local.SubmissionLocal
+import com.televantou.wombat.data.net.Submission
 import com.televantou.wombat.data.repository.SubmissionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Flowable
@@ -20,21 +24,19 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val error: ObservableField<String> = ObservableField()
-    val loading: ObservableBoolean = ObservableBoolean(true)
 
-    fun getFavoriteMovies(): Flowable<PagingData<Submission>> {
+    fun getSubmissions(): Flowable<PagingData<SubmissionLocal>> {
 
         return submissionRepository
                 .getSubmissions()
                 .map { pagingData ->
-                    loading.set(false)
                     error.set(null)
                     pagingData
                 }
-                .doOnError {
-                    loading.set(false)
-                    error.set(it.localizedMessage)
-                }
+    }
+
+    fun loadSubmissions(): List<SubmissionLocal> {
+        return submissionRepository.loadFromDb()
     }
 
 
