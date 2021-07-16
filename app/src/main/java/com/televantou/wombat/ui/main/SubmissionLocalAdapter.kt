@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.televantou.wombat.data.local.SubmissionLocal
-import com.televantou.wombat.databinding.LaunchRowBinding
+import com.televantou.wombat.databinding.SubmissionRowBinding
 import com.televantou.wombat.utils.getCount
 
 /**
@@ -20,7 +20,7 @@ class SubmissionLocalAdapter(private var items: List<SubmissionLocal>,    privat
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = LaunchRowBinding.inflate(inflater)
+        val binding = SubmissionRowBinding.inflate(inflater)
         return ViewHolder(binding)
     }
 
@@ -32,8 +32,7 @@ class SubmissionLocalAdapter(private var items: List<SubmissionLocal>,    privat
         holder.binding.executePendingBindings()
         holder.binding.txtUpvotes.text = currentItem.getCount()
         holder.binding.parent.setOnClickListener { onItemClickListener.onItemClicked(currentItem) }
-
     }
 
-    inner class ViewHolder(val binding: LaunchRowBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: SubmissionRowBinding) : RecyclerView.ViewHolder(binding.root)
 }

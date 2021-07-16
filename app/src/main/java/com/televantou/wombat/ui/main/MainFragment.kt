@@ -19,7 +19,6 @@ import com.televantou.wombat.utils.getRedditUrl
 import com.televantou.wombat.utils.isNetworkAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.launch
 
 
 /**
@@ -81,7 +80,6 @@ class MainFragment : Fragment(),
             Thread {
                 submissionLocalAdapter.set(viewModel.loadSubmissions())
             }.start()
-
             Toast.makeText(context, getString(R.string.no_internet_toast), LENGTH_LONG).show()
 
         }

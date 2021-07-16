@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.televantou.wombat.data.local.SubmissionLocal
-import com.televantou.wombat.databinding.LaunchRowBinding
+import com.televantou.wombat.databinding.SubmissionRowBinding
 import com.televantou.wombat.utils.getCount
 
 /**
@@ -17,10 +17,9 @@ class SubmissionAdapter(
         private var onItemClickListener: OnItemClickListener
 ) : PagingDataAdapter<SubmissionLocal, SubmissionAdapter.ViewHolder>(SubmissionComparator) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = LaunchRowBinding.inflate(inflater)
+        val binding = SubmissionRowBinding.inflate(inflater)
         return ViewHolder(binding)
     }
 
@@ -31,7 +30,7 @@ class SubmissionAdapter(
         currentItem?.let { holder.bind(it) }
     }
 
-    inner class ViewHolder(val binding: LaunchRowBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: SubmissionRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SubmissionLocal) {
             binding.txtUpvotes.text = item.getCount()

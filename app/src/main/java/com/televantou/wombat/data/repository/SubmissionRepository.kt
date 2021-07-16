@@ -29,8 +29,6 @@ class SubmissionRepository @Inject constructor(private val service: RedditApi, p
         ).flowable
     }
 
-
-
     fun loadFromDb(): List<SubmissionLocal> =
         submissionDao.getAllSubmissions()
 }

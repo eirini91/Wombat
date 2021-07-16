@@ -8,14 +8,6 @@ import com.bumptech.glide.Glide
 /**
  * Created by Eirini Televantou on 15/07/21 for Wombat.
  */
-//Binding Adapter to set recycler view adapter from XML
-@BindingAdapter(value = ["setAdapter"])
-fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
-    this.run {
-        this.setHasFixedSize(true)
-        this.adapter = adapter
-    }
-}
 
 //Binding Adapter to set the image URL for Glide from XML
 @BindingAdapter(value = ["setImageUrl"])
