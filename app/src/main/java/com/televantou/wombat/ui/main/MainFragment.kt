@@ -15,8 +15,8 @@ import androidx.paging.LoadState
 import com.televantou.wombat.R
 import com.televantou.wombat.data.local.SubmissionLocal
 import com.televantou.wombat.databinding.MainFragmentBinding
+import com.televantou.wombat.utils.Utils
 import com.televantou.wombat.utils.getRedditUrl
-import com.televantou.wombat.utils.isNetworkAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 
@@ -68,8 +68,8 @@ class MainFragment : Fragment(),
         }
     }
 
-    private fun getData() {
-        if (isNetworkAvailable(context)) {
+    fun getData() {
+        if (Utils().isNetworkAvailable(requireContext())) {
             binding.rclSubmissions.adapter = submissionAdapter
             mDisposable.add(viewModel.getSubmissions().subscribe {
                 submissionAdapter.submitData(lifecycle, it)

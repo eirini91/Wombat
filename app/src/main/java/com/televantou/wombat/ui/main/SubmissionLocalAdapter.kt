@@ -11,7 +11,10 @@ import com.televantou.wombat.utils.getCount
  * Created by Eirini Televantou on 16/07/2021 for Wombat.
  */
 
-class SubmissionLocalAdapter(private var items: List<SubmissionLocal>,    private var onItemClickListener: SubmissionAdapter.OnItemClickListener) : RecyclerView.Adapter<SubmissionLocalAdapter.ViewHolder>() {
+class SubmissionLocalAdapter(
+    private var items: List<SubmissionLocal>,
+    private var onItemClickListener: SubmissionAdapter.OnItemClickListener
+) : RecyclerView.Adapter<SubmissionLocalAdapter.ViewHolder>() {
 
     fun set(newItems: List<SubmissionLocal>) {
         items = newItems
@@ -34,5 +37,6 @@ class SubmissionLocalAdapter(private var items: List<SubmissionLocal>,    privat
         holder.binding.parent.setOnClickListener { onItemClickListener.onItemClicked(currentItem) }
     }
 
-    inner class ViewHolder(val binding: SubmissionRowBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: SubmissionRowBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
