@@ -10,7 +10,6 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.televantou.wombat.R
 import com.televantou.wombat.data.local.SubmissionLocal
@@ -30,14 +29,9 @@ class MainFragment : Fragment(),
     SubmissionAdapter.OnItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
-    lateinit var binding: MainFragmentBinding
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private val mDisposable = CompositeDisposable()
 
+    lateinit var binding: MainFragmentBinding
     var submissionAdapter: SubmissionAdapter = SubmissionAdapter(this)
 
     override fun onCreateView(
@@ -47,7 +41,6 @@ class MainFragment : Fragment(),
         setHasOptionsMenu(true)
 
         binding = MainFragmentBinding.inflate(inflater, container, false)
-
         binding.lifecycleOwner = this
         binding.viewModel = (viewModel)
         setupAdapter()
@@ -75,6 +68,9 @@ class MainFragment : Fragment(),
                 submissionAdapter.submitData(lifecycle, it)
             })
         } else {
+
+            // using a recycler view adapter for when we don't have connection. This is a bad practice.
+            // I only did this as I could not in the 5 hour timeframe create an RxRemoteMediator to return the db results and network results using RXJava (as the library was created to be used by coroutines
             val submissionLocalAdapter = SubmissionLocalAdapter(emptyList(), this)
             binding.rclSubmissions.adapter = submissionLocalAdapter
             Thread {
@@ -92,6 +88,8 @@ class MainFragment : Fragment(),
         startActivity(i)
     }
 
-
+    companion object {
+        fun newInstance() = MainFragment()
+    }
 }
 

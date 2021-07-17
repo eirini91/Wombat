@@ -10,10 +10,8 @@ import org.hamcrest.Matcher
 import java.util.concurrent.TimeoutException
 
 /**
- * Created by Eirini Televantou on 21/03/2021 for GAN.
+ * Created by Eirini Televantou on 17/07/2021 for Wombat.
  */
-
-
 
 
 /**
